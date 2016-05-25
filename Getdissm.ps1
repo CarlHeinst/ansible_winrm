@@ -1,0 +1,1 @@
+Get-ItemProperty "HKCU:\Software\Microsoft\ServerManager" | select DoNotOpenServerManagerAtLogon,Pspath | convertto-json

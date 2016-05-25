@@ -1,0 +1,7 @@
+- name: test WMI Query
+  hosts: all 
+  tasks: 
+    - name: gwmi win32_computersystem
+      raw: gwmi win32_computersystem
+      register: compsysy
+    - debug: var=compsysy

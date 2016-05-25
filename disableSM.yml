@@ -1,0 +1,17 @@
+---
+  - name: Disable Server Manager
+    hosts: Win
+    #vars_files:
+      #- host_vars/default.yml
+    gather_facts: False
+    tasks:
+    - name: Set Registry Key to disable server manager      
+      win_regedit:
+        key: HKCU:\Software\Microsoft\ServerManager
+        value: DoNotOpenServerManagerAtLogon
+        data: 1
+        datatype: dword
+    - name: Get Registry Key Value
+      script: Getdissm.ps1
+      register: WINRM
+    - debug: var=WINRM.stdout

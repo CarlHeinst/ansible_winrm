@@ -1,0 +1,29 @@
+---
+  - name: Create Registry Keys
+    hosts: Win
+    #vars_files:
+      #- host_vars/default.yml
+    gather_facts: False
+    tasks:
+    - name: Set Registry Key for WINRM Idle Time Out      
+      win_regedit:
+        key: HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS
+        value: IdleTimeout
+        data: 36000000
+        datatype: dword
+    - name: Set Registry Key for WINRM MaxShellsPerUser   
+      win_regedit:
+        key: HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS
+        value: MaxShellsPerUser
+        data: 10
+        datatype: dword
+    - name: Set Registry Key for WINRM MaxProcessesPerShell   
+      win_regedit:
+        key: HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS
+        value: MaxProcessesPerShell
+        data: 10
+        datatype: dword
+    - name: Get Registry Key Value
+      script: winRMreg.ps1
+      register: WINRM
+    - debug: var=WINRM.stdout

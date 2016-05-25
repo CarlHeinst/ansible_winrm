@@ -1,0 +1,13 @@
+---
+  - name: Disable Server Manager
+    hosts: Win
+    #vars_files:
+      #- host_vars/default.yml
+    gather_facts: False
+    tasks:
+    - name: Copy MOF File      
+      win_copy: src=/ANSIBLE-LAB/localhost.mof dest=c:/localhost.mof
+    - name: Deploy MOF
+      raw: Start-DscConfiguration -Path C:\ -Wait -Force -Verbose | convertto-json
+      register: SM
+    - debug: var=SM

@@ -1,0 +1,21 @@
+---
+  - name: Create Registry Keys
+    hosts: Win
+    #vars_files:
+      #- host_vars/default.yml
+    gather_facts: False
+    tasks:
+    - name: Set Registry Key Number 1
+      win_regedit:
+        key: HKCU:\Software\MyCompany
+        value: hello
+        data: world
+      register: reg1
+    - debug: var=reg1
+    - name: Set Registry Key Number 2      
+      win_regedit:
+        key: HKCU:\Software\MyCompany
+        value: hello
+        data: 1337
+        datatype: dword
+

@@ -1,0 +1,17 @@
+---
+  - name: Delete Registry Keys
+    hosts: Win
+    #vars_files:
+      #- host_vars/default.yml
+    gather_facts: False
+    tasks:
+    - name: Set Registry Key Number 1
+      win_regedit:
+        key: HKCU:\Software\MyCompany
+        value: hello
+        state: absent
+    - name: Set Registry Key Number 2      
+      win_regedit:
+        key: HKCU:\Software\MyCompany
+        value: hello
+        state: absent

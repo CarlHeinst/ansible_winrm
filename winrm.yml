@@ -1,0 +1,7 @@
+- name: Get Registry Key Values Test
+  hosts: all 
+  tasks: 
+    - name: Get WINRM Registry Key Value
+      raw: Get-ItemProperty "HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS"
+      register: winrm
+    - debug: var=winrm

@@ -1,0 +1,7 @@
+- name: Get Registry Key Values Test
+  hosts: all 
+  tasks: 
+    - name: Get Registry Key Value
+      raw: Get-ItemProperty "HKCU:\Software\MyCompany"
+      register: compsysy
+    - debug: var=compsysy
