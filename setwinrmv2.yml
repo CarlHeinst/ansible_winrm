@@ -10,7 +10,7 @@
       register: WINRM
     - set_fact:
         reg: "{{WINRM.stdout|from_json}}"
-    - debug: var=reg.IdleTimeout
+    - debug: var=reg
     - name: Set Registry Key for WINRM Idle Time Out   
       win_regedit:
         key: "{{item.key}}"
