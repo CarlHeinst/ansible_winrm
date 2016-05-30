@@ -19,6 +19,10 @@
         datatype: "{{item.datatype}}"
       with_items:
         - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "MaxShellsPerUser",  data: "10", datatype: "dword"}
-        - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "MaxProcessesPerShell", data: "10", datatype: "dword"}
+        - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "MaxProcessesPerShell", data: "100", datatype: "dword"}
         - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "IdleTimeout", data: "36000000", datatype: "dword"}
-      when: reg.IdleTimeout != 36000000 or reg.MaxShellsPerUser != 10 or reg.MaxProcessesPerShell != 10  
+        - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "MaxShellRunTime", data: "2147483647", datatype: "dword"}
+        - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "MaxConcurrentUsers", data: "50", datatype: "dword"}
+        - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "MaxMemoryPerShellMB", data: "1024", datatype: "dword"}
+        - {key: 'HKLM:\Software\Policies\Microsoft\Windows\WinRM\Service\WinRS', value: "AllowRemoteShellAccess", data: "true", datatype: "string"}
+      when: reg.IdleTimeout != 36000000 or reg.MaxShellsPerUser != 10 or reg.MaxProcessesPerShell != 100 or reg.MaxShellRunTime != 2147483647 or reg.MaxConcurrentUsers != 50 or reg.MaxMemoryPerShellMB != 1024 or reg.AllowRemoteShellAccess != "true"
