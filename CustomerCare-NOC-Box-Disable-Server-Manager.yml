@@ -4,7 +4,7 @@
     gather_facts: False
     tasks:
     - name: Get Registry Key Value
-      script: Getdissm.ps1
+      script: files/PowerShell/Getdissm.ps1
       register: sm      
     - set_fact:
         smres: "{{sm.stdout|from_json}}"
