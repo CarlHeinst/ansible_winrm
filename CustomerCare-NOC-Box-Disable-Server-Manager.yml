@@ -1,8 +1,6 @@
 ---
   - name: Disable Server Manager
-    hosts: Win
-    #vars_files:
-      #- host_vars/default.yml
+    hosts: "{{ defaultcustomercarenocboxgroup }}"
     gather_facts: False
     tasks:
     - name: Get Registry Key Value
@@ -10,8 +8,6 @@
       register: sm      
     - set_fact:
         smres: "{{sm.stdout|from_json}}"
-    #- set_fact:
-    #    smresFil: "{{smres.DoNotOpenServerManagerAtLogon | int}}"
     - debug: var=sm.stdout
     - name: Set Registry Key to disable server manager      
       win_regedit:

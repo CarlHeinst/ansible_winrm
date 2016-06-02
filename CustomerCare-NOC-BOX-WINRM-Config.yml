@@ -1,6 +1,6 @@
 ---
   - name: Create Registry Keys
-    hosts: Win
+    hosts: "{{ defaultcustomercarenocboxgroup }}"
     #vars_files:
       #- host_vars/default.yml
     gather_facts: False
